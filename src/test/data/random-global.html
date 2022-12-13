@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<!--
+This test benchmark sets the window.tachometerResult global to a random float in
+the range determined by the "min" and "max" URL search parameters.
+-->
+
+<html>
+  <head>
+    <title>random window.tachometerResult test</title>
+  </head>
+  <body>
+    <script>
+      const params = new URL(document.location).searchParams;
+      const min = Number(params.get('min'));
+      const max = Number(params.get('max'));
+      const customResult = params.has('customResult');
+      const result = Math.random() * (max - min) + min;
+      if (customResult) {
+        window.customResult = result;
+      } else {
+        window.tachometerResult = result;
+      }
+    </script>
+  </body>
+</html>
